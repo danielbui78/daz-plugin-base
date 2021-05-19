@@ -33,61 +33,65 @@ Local definitions
 *****************************/
 #define DAZ_TO_UNITY_PLUGIN_NAME "DazPluginBase"
 
+// TODO: Rename the namespace to avoid conflict with other plugins
+namespace DazPluginBase {
 
-DazPluginBaseDialog::DazPluginBaseDialog(QWidget* parent) :
-	 DzBasicDialog(parent, DAZ_TO_UNITY_PLUGIN_NAME)
-{
+	DazPluginBaseDialog::DazPluginBaseDialog(QWidget* parent) :
+		DzBasicDialog(parent, DAZ_TO_UNITY_PLUGIN_NAME)
+	{
 
-	// Declarations
-	 int margin = style()->pixelMetric(DZ_PM_GeneralMargin);
-	 int wgtHeight = style()->pixelMetric(DZ_PM_ButtonHeight);
-	 int btnMinWidth = style()->pixelMetric(DZ_PM_ButtonMinWidth);
+		// Declarations
+		int margin = style()->pixelMetric(DZ_PM_GeneralMargin);
+		int wgtHeight = style()->pixelMetric(DZ_PM_ButtonHeight);
+		int btnMinWidth = style()->pixelMetric(DZ_PM_ButtonMinWidth);
 
-	 // Set the dialog title
-	 setWindowTitle(tr("DazPluginBase"));
+		// Set the dialog title
+		setWindowTitle(tr("DazPluginBase"));
 
-	 QFormLayout* mainLayout = new QFormLayout(this);
+		QFormLayout* mainLayout = new QFormLayout(this);
 
-	 // Label
-	 sampleLabel = new QLabel(this);
-	 sampleLabel->setText("Label Text goes here.");
+		// Label
+		sampleLabel = new QLabel(this);
+		sampleLabel->setText("Label Text goes here.");
 
-	 // Sample Subdivision
-	 QHBoxLayout* subdivisionLayout = new QHBoxLayout(this);
-	 sampleTextArea = new QTextEdit(this);
-	 sampleTextArea->setHtml("<b>Sample Text Area Text</b> goes here.</br>");
-	 sampleTextArea->setMinimumHeight(400);
-	 subdivisionLayout->addWidget(sampleTextArea);
+		// Sample Subdivision
+		QHBoxLayout* subdivisionLayout = new QHBoxLayout(this);
+		sampleTextArea = new QTextEdit(this);
+		sampleTextArea->setHtml("<b>Sample Text Area Text</b> goes here.</br>");
+		sampleTextArea->setMinimumHeight(400);
+		subdivisionLayout->addWidget(sampleTextArea);
 
-	 // Sample Button
-	 samplePushButton = new QPushButton("Sample Button", this);
-	 connect( samplePushButton, SIGNAL(released()), this, SLOT(HandleSamplePushButton()) );
+		// Sample Button
+		samplePushButton = new QPushButton("Sample Button", this);
+		connect(samplePushButton, SIGNAL(released()), this, SLOT(HandleSamplePushButton()));
 
-	 mainLayout->addRow("DazPluginBase", sampleLabel);
-	 mainLayout->addRow("", subdivisionLayout);
-	 mainLayout->addRow("", samplePushButton);
+		mainLayout->addRow("DazPluginBase", sampleLabel);
+		mainLayout->addRow("", subdivisionLayout);
+		mainLayout->addRow("", samplePushButton);
 
-	 addLayout(mainLayout);
+		addLayout(mainLayout);
 
-	 // Make the dialog fit its contents, with a minimum width, and lock it down
-	 resize(QSize(500, 0).expandedTo(minimumSizeHint()));
-	 setFixedWidth(width());
-	 setFixedHeight(height());
+		// Make the dialog fit its contents, with a minimum width, and lock it down
+		resize(QSize(500, 0).expandedTo(minimumSizeHint()));
+		setFixedWidth(width());
+		setFixedHeight(height());
 
-	 // Set Defaults
-	 DzNode* Selection = dzScene->getPrimarySelection();
-	 if (Selection)
-	 {
-		 sampleTextArea->moveCursor(QTextCursor::End);
-		 sampleTextArea->insertHtml("<br>Current Selection: " + Selection->getName() + "</br>");
-	 }
+		// Set Defaults
+		DzNode* Selection = dzScene->getPrimarySelection();
+		if (Selection)
+		{
+			sampleTextArea->moveCursor(QTextCursor::End);
+			sampleTextArea->insertHtml("<br>Current Selection: " + Selection->getName() + "</br>");
+		}
 
-}
+	}
 
-void DazPluginBaseDialog::HandleSamplePushButton()
-{
-	sampleTextArea->moveCursor(QTextCursor::End);
-	sampleTextArea->insertHtml("<hr></br>More sample text inserted.</br>");
+	void DazPluginBaseDialog::HandleSamplePushButton()
+	{
+		sampleTextArea->moveCursor(QTextCursor::End);
+		sampleTextArea->insertHtml("<hr></br>More sample text inserted.</br>");
+	}
+
 }
 
 

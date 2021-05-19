@@ -54,36 +54,40 @@
 #include "DazPluginBaseDialog.h"
 #include "DazPluginBase.h"
 
+// TODO: Rename the namespace to avoid conflict with other plugins
+namespace DazPluginBase {
 
-DazPluginBase::DazPluginBase(const QString& text, const QString& desc) :
-	 DzAction(tr("&DazPluginBase Menu Item"), tr("&Description for DazPluginBase Menu Item"))
-{
-
-}
-
-DazPluginBase::~DazPluginBase()
-{
-}
-
-void DazPluginBase::executeAction()
-{
-	// Check if the main window has been created yet.
-	// If it hasn't, alert the user and exit early.
-	DzMainWindow* mw = dzApp->getInterface();
-	if (!mw)
+	DazPluginBase::DazPluginBase(const QString& text, const QString& desc) :
+		DzAction(tr("&DazPluginBase Menu Item"), tr("&Description for DazPluginBase Menu Item"))
 	{
-		 QMessageBox::warning(0, tr("Error"),
-			 tr("The main window has not been created yet."), QMessageBox::Ok);
 
-		 return;
 	}
-	
-	// Create the dialog
-	DazPluginBaseDialog* dlg = new DazPluginBaseDialog(mw);
 
-	// If the Accept button was pressed, start the export
-	if (dlg->exec() == QDialog::Accepted)
+	DazPluginBase::~DazPluginBase()
 	{
+	}
+
+	void DazPluginBase::executeAction()
+	{
+		// Check if the main window has been created yet.
+		// If it hasn't, alert the user and exit early.
+		DzMainWindow* mw = dzApp->getInterface();
+		if (!mw)
+		{
+			QMessageBox::warning(0, tr("Error"),
+				tr("The main window has not been created yet."), QMessageBox::Ok);
+
+			return;
+		}
+
+		// Create the dialog
+		DazPluginBaseDialog* dlg = new DazPluginBaseDialog(mw);
+
+		// If the Accept button was pressed, start the export
+		if (dlg->exec() == QDialog::Accepted)
+		{
+
+		}
 
 	}
 

@@ -12,24 +12,29 @@ class QGroupBox;
 class QLabel;
 class QTextEdit;
 
-class DazPluginBaseDialog : public DzBasicDialog {
-	Q_OBJECT
-public:
+// TODO: Rename the namespace to avoid conflict with other plugins
+namespace DazPluginBase {
 
-	/** Constructor **/
-	DazPluginBaseDialog(QWidget *parent);
+	class DazPluginBaseDialog : public DzBasicDialog {
+		Q_OBJECT
+	public:
 
-	/** Destructor **/
-	virtual ~DazPluginBaseDialog() {}
+		/** Constructor **/
+		DazPluginBaseDialog(QWidget* parent);
 
-	QLabel* sampleLabel;
-	QTextEdit* sampleTextArea;
-	QPushButton* samplePushButton;
+		/** Destructor **/
+		virtual ~DazPluginBaseDialog() {}
 
-	void Accepted();
-private slots:
-	void HandleSamplePushButton();
+		QLabel* sampleLabel;
+		QTextEdit* sampleTextArea;
+		QPushButton* samplePushButton;
 
-private:
+		void Accepted();
+	private slots:
+		void HandleSamplePushButton();
 
-};
+	private:
+
+	};
+
+}

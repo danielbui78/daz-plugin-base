@@ -14,4 +14,10 @@ DZ_PLUGIN_DESCRIPTION(QString(
 	"DazPluginBase Documentation"
 ).arg(dzApp->getDocumentationPath()));
 
-DZ_PLUGIN_CLASS_GUID(DazPluginBase, 0b0dac37-1ac4-4888-9cf6-8c2dde6e65fa);
+// TODO: 1. Rename the namespace to avoid conflict with other plugins
+//       2. Generate new GUID and replace the one here
+namespace DazPluginBase {
+
+	DZ_PLUGIN_CLASS_GUID(DazPluginBase, 0b0dac37-1ac4-4888-9cf6-8c2dde6e65fa);
+
+}

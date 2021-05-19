@@ -6,17 +6,23 @@
 #include "QtCore/qfile.h"
 #include "QtCore/qtextstream.h"
 
-class DazPluginBase : public DzAction {
-	 Q_OBJECT
-public:
+// TODO: Rename the namespace to avoid conflict with other plugins
+namespace DazPluginBase {
 
-	 DazPluginBase(const QString& text = QString::null, const QString& desc = QString::null);
-	 virtual ~DazPluginBase();
+	class DazPluginBase : public DzAction {
+		Q_OBJECT
+	public:
 
-protected:
-	void executeAction();
+		DazPluginBase(const QString& text = QString::null, const QString& desc = QString::null);
+		virtual ~DazPluginBase();
 
-//	 virtual QString getActionGroup() const { return tr("PluginBase"); }
-	 virtual QString getDefaultMenuPath() const { return tr("&Plugin Menu"); }
+	protected:
+		void executeAction();
 
-};
+		//	 virtual QString getActionGroup() const { return tr("PluginBase"); }
+		virtual QString getDefaultMenuPath() const { return tr("&Plugin Menu"); }
+
+	};
+
+}
+

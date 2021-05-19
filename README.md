@@ -1,5 +1,4 @@
 # daz-plugin-base
-generic daz plugin base to use as template
 
 This project is based on source code and project files from Daz Studio plugins and SDK.
 
